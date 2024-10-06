@@ -1,6 +1,5 @@
 # Parsedown
-A Markdown parser written in [Odin](https://github.com/odin-lang/Odin).
-
+A Markdown parser to `HTML` written in [Odin](https://github.com/odin-lang/Odin).
 
 ## Using the program
 
@@ -8,17 +7,17 @@ A Markdown parser written in [Odin](https://github.com/odin-lang/Odin).
 - Odin
 - Make (optional)
 
-#### Building
+### Building
 ```bash
 make
 ```
 
-#### Running
+### Running
 ```bash
 make run
 ```
 
-#### If you don't have make
+### If you don't have make
 ```bash
 odin build src/main.odin -out:build/parsedown -file
 ./build/parsedown
@@ -27,31 +26,24 @@ odin build src/main.odin -out:build/parsedown -file
 > [!NOTE]
 > The markdown should be edited in the `src/main.odin` file
 
----
 
-
-### Library
-> [!NOTE]
-> This how I want it to be at some point
-> Right now it is an standalone program
-
-- Example:
+- Code (main procedure):
 ```odin
-import "parsedown"
+main :: proc() {
+    markdown := `# Hello World
 
-markdown := `# Hello World
+    This is a paragraph with **bold** and *italic* text.
 
-This is a paragraph with **bold** and *italic* text.
+    Check out this [link](https://example.com)!
 
-Check out this [link](https://example.com)!
+    ## Another heading`
 
-## Another heading`
+    tokens := parsedown.tokenise(markdown)
+    defer delete(tokens)
 
-tokens := parsedown.tokenise(markdown)
-defer delete(tokens)
-
-parsed := parsedown.parse(tokens)
-fmt.println(parsed)
+    parsed := parsedown.parse(tokens)
+    fmt.println(parsed)
+}
 ```
 
 - Output:
