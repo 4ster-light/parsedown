@@ -2,7 +2,6 @@
 A Markdown parser to `HTML` written in [Odin](https://github.com/odin-lang/Odin).
 
 ## Using the program
-
 ### Requirements
 - Odin
 - Make (optional)
@@ -11,16 +10,13 @@ A Markdown parser to `HTML` written in [Odin](https://github.com/odin-lang/Odin)
 ```bash
 make
 ```
-
 ### Running
 ```bash
 make run
 ```
-
 ### If you don't have make
 ```bash
-odin build src/main.odin -out:build/parsedown -file
-./build/parsedown
+odin run src -out:build/parsedown
 ```
 
 > [!NOTE]
@@ -30,22 +26,20 @@ odin build src/main.odin -out:build/parsedown -file
 - Code (main procedure):
 ```odin
 main :: proc() {
-    markdown := `# Hello World
+    markdown, ok := os.read_entire_file("./test.md")
+    if !ok {
+        fmt.println("Could not read file")
+        return
+    }
+    defer delete(markdown)
 
-    This is a paragraph with **bold** and *italic* text.
-
-    Check out this [link](https://example.com)!
-
-    ## Another heading`
-
-    tokens := parsedown.tokenise(markdown)
+    tokens := tokeniser.tokenise(string(markdown))
     defer delete(tokens)
 
-    parsed := parsedown.parse(tokens)
+    parsed := parser.parse(tokens)
     fmt.println(parsed)
 }
 ```
-
 - Output:
 
 ```html
