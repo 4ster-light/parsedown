@@ -4,12 +4,12 @@ BINARY_NAME = parsedown
 
 all: run
 
-build: clean
+build:
 	@echo "Building..."
 	@mkdir -p $(BUILD_DIR)
 	@odin build $(SRC_DIR) -out:$(BUILD_DIR)/$(BINARY_NAME)
 
-run: clean
+run:
 	@echo "Running..."
 	@mkdir -p $(BUILD_DIR)
 	@odin run $(SRC_DIR) -out:$(BUILD_DIR)/$(BINARY_NAME)
