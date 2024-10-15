@@ -16,7 +16,7 @@ fn test_paragraphs() {
         "<p>This is a paragraph.</p>"
     );
     assert_eq!(
-        parser.parse("This is\na multi-line\nparagraph."),
+        parser.parse("This is\n\na multi-line\n\nparagraph."),
         "<p>This is</p>\n<p>a multi-line</p>\n<p>paragraph.</p>"
     );
 }
