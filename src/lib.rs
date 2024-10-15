@@ -29,6 +29,8 @@ impl TokenList {
 
 struct Tokenizer;
 
+pub struct Parser;
+
 impl Tokenizer {
     fn tokenize(&self, input: &str) -> TokenList {
         let mut tokens = TokenList::new();
@@ -146,8 +148,6 @@ impl Tokenizer {
         (content, rest)
     }
 }
-
-pub struct Parser;
 
 impl Parser {
     pub fn new() -> Self {
