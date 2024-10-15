@@ -9,10 +9,14 @@ fn test_lists() {
 }
 
 #[test]
-fn test_inline_formatting() {
+fn test_paragraphs() {
     let parser = Parser::new();
     assert_eq!(
-        parser.parse("This is **bold** and *italic* text."),
-        "<p>This is <strong>bold</strong> and <em>italic</em> text.</p>"
+        parser.parse("This is a paragraph."),
+        "<p>This is a paragraph.</p>"
+    );
+    assert_eq!(
+        parser.parse("This is\na multi-line\nparagraph."),
+        "<p>This is</p>\n<p>a multi-line</p>\n<p>paragraph.</p>"
     );
 }
